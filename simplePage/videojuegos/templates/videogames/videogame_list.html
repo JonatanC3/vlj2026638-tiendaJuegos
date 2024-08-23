@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="mb-4">Lista de Videojuegos</h2>
+{% if user.is_staff %}
+    <a href="{% url 'videogame_create' %}" class="btn btn-primary mb-3">Agregar nuevo videojuego</a>
+{% endif %}
+<div class="list-group">
+{% for videogame in videogames %}
+    <div class="list-group-item">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">
+                <a href="{% url 'videogame_detail' videogame.id %}">{{ videogame.title }}</a>
+            </h5>
+            <small>${{ videogame.price }}</small>
+        </div>
+        <div class="mt-2">
+            {% if user.is_staff %}
+                <a href="{% url 'videogame_update' videogame.id %}" class="btn btn-sm btn-outline-secondary">Editar</a>
+                <a href="{% url 'videogame_delete' videogame.id %}" class="btn btn-sm btn-outline-danger">Eliminar</a>
+            {% endif %}
+            <a href="{% url 'create_order' videogame.id %}" class="btn btn-sm btn-outline-primary">Realizar Pedido</a>
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}

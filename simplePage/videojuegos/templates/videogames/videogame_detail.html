@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="mb-4">{{ videogame.title }}</h2>
+<div class="card">
+    <div class="card-body">
+        <p class="card-text"><strong>Precio:</strong> ${{ videogame.price }}</p>
+        <p class="card-text"><strong>Género:</strong> {{ videogame.genre }}</p>
+        <p class="card-text"><strong>Desarrollador:</strong> {{ videogame.developer }}</p>
+        <p class="card-text"><strong>Plataforma:</strong> {{ videogame.platform }}</p>
+        <p class="card-text"><strong>Fecha de Lanzamiento:</strong> {{ videogame.release_date }}</p>
+        <p class="card-text"><strong>Descripción:</strong> {{ videogame.description }}</p>
+        <a href="{% url 'create_order' videogame.id %}" class="btn btn-primary">Hacer Pedido</a>
+    </div>
+</div>
+{% endblock %}

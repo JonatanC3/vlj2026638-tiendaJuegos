@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mb-4">Bienvenido a la Tienda de Videojuegos</h1>
+
+<div id="homeCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        {% for image_url in carousel_images %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <img src="{{ image_url }}" class="d-block w-100" alt="Videogame image">
+            </div>
+        {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+{% if user.is_authenticated %}
+    <p>Hola, {{ user.username }}!</p>
+    <a href="{% url 'videogame_list' %}" class="btn btn-primary">Ver lista de videojuegos</a>
+{% else %}
+    <p>Por favor, inicia sesión o regístrate para continuar.</p>
+    <a href="{% url 'login' %}" class="btn btn-primary">Iniciar sesión</a>
+    <a href="{% url 'signup' %}" class="btn btn-secondary">Registrarse</a>
+{% endif %}
+{% endblock %}

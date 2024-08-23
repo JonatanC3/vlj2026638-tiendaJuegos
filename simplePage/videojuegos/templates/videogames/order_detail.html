@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Receipt</h2>
+<p>Order ID: {{ order.id }}</p>
+<p>Customer: {{ order.user.username }}</p>
+<p>Videogame: {{ order.videogame.title }}</p>
+<p>Quantity: {{ order.quantity }}</p>
+<p>Unit Price: ${{ order.videogame.price }}</p>
+<p>Total Price: ${{ order.total_price }}</p>
+<p>Order Date: {{ order.order_date }}</p>
+<p>Thank you for your purchase!</p>
+{% endblock %}

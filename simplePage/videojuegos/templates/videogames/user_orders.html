@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="mb-4">Mis Pedidos</h2>
+
+{% if orders %}
+    <div class="list-group">
+    {% for order in orders %}
+        <a href="{% url 'order_detail' order.id %}" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ order.videogame.title }}</h5>
+                <small>{{ order.order_date|date:"F d, Y" }}</small>
+            </div>
+            <p class="mb-1">Cantidad: {{ order.quantity }}</p>
+            <small>Total: ${{ order.total_price }}</small>
+        </a>
+    {% endfor %}
+    </div>
+{% else %}
+    <p>Aún no has realizado ningún pedido.</p>
+{% endif %}
+
+<a href="{% url 'videogame_list' %}" class="btn btn-primary mt-3">Explorar Juegos</a>
+{% endblock %}
